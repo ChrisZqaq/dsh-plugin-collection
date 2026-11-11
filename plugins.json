@@ -1,0 +1,124 @@
+{
+  "$schema": "./plugins.schema.json",
+  "catalogVersion": "0.1.0",
+  "updatedAt": "2026-11-11",
+  "owner": "ChrisZqaq",
+  "description": "DSH（DeepSeek Harness）插件聚合目录：每个插件独立成仓、独立版本、独立发布；本仓只做索引、组合安装与升级编排，不复制插件源码。",
+  "install": {
+    "command": "npx --yes -p @deepseek-ai/dsh dsh plugin --profile desktop add",
+    "profile": "desktop",
+    "sourcePolicy": "github",
+    "unixEntry": "install.sh (bash install.sh --list | --plugin <id> | --all)"
+  },
+  "plugins": [
+    {
+      "id": "dsh-token-pill",
+      "name": "@local/dsh-token-pill",
+      "displayName": "Token Pill · DeepSeek 花费胶囊",
+      "version": "0.2.3",
+      "repo": "https://github.com/ChrisZqaq/dsh-token-pill",
+      "path": "plugins/dsh-token-pill.json",
+      "category": "metering",
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "license": "MIT",
+      "description": "侧边栏底部一枚胶囊：常态显示当前峰谷时段 + 今日总花费，悬停展开缓存命中、按模型拆分、当前价目与下次变价时间。金额全在本机按 session 事件流的 usage 估算，宿主侧投影按天记账，冷会话也计入。",
+      "highlights": [
+        "缓存命中单独计价（命中/未命中价差 30–50 倍）",
+        "跨会话聚合在宿主做，冷会话不漏算",
+        "节假日不建模，遇法定节假日读数偏高（已知局限）"
+      ],
+      "install": "github:ChrisZqaq/dsh-token-pill",
+      "update": "dsh plugin --profile desktop add github:ChrisZqaq/dsh-token-pill",
+      "requires": {
+        "dsh": ">=0.2.1-rc.1",
+        "node": ">=22.19.0"
+      },
+      "status": "stable"
+    },
+    {
+      "id": "dsh-cpamc-pill",
+      "name": "@local/dsh-cpamc-pill",
+      "displayName": "CPAMC Pill · CPA 反代状态胶囊",
+      "version": "0.1.1",
+      "repo": "https://github.com/ChrisZqaq/dsh-cpamc-pill",
+      "path": "plugins/dsh-cpamc-pill.json",
+      "category": "metering",
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "license": "MIT",
+      "description": "侧边栏底部第二枚胶囊，读 CPA-Manager-Plus 的 dashboard 与 auth-files 两个只读接口，显示反代连接健康度、今日 token 用量、成功/失败与滚动速率。管理密钥留在宿主侧，浏览器只调用本插件注册的同源路由。",
+      "highlights": [
+        "只读两个 CPA-Manager-Plus 接口，不写入不代理请求",
+        "不做金额显示：反代账号是订阅制，没有逐次账单",
+        "total_tokens 已含 cache_read，叠加会把一天算成双倍"
+      ],
+      "install": "github:ChrisZqaq/dsh-cpamc-pill",
+      "update": "dsh plugin --profile desktop add github:ChrisZqaq/dsh-cpamc-pill",
+      "requires": {
+        "dsh": ">=0.2.1-rc.1",
+        "node": ">=22.19.0",
+        "external": "CPA-Manager-Plus @ 127.0.0.1:18317"
+      },
+      "status": "beta"
+    },
+    {
+      "id": "dsh-infra",
+      "name": "@local/dsh-infra",
+      "displayName": "Infra · 机器与仓库公共知识库",
+      "version": "0.1.1",
+      "repo": "https://github.com/ChrisZqaq/dsh-infra",
+      "path": "plugins/dsh-infra.json",
+      "category": "workspace",
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "license": "MIT",
+      "description": "给 agent 的「机器 + 仓库」公共知识库：一处维护 infra.yml，所有会话都知道该 ssh 哪台机器、用哪把 key、不许改成 https。三个界面（侧栏 Infra 入口、主区域 Infra 面板、对话区仓库视图）读同一份 YAML 与同一组宿主路由。",
+      "highlights": [
+        "解决「明明有 key 却自己 ssh-keygen 一把新的」这类事故",
+        "全局 ~/.dsh/infra/infra.yml + 项目级 .dsh/infra.yml 双层覆盖",
+        "自定义正则规则可拦截危险命令（如整目录删除）"
+      ],
+      "install": "github:ChrisZqaq/dsh-infra",
+      "update": "dsh plugin --profile desktop add github:ChrisZqaq/dsh-infra",
+      "requires": {
+        "dsh": ">=0.2.1-rc.1",
+        "node": ">=22.19.0"
+      },
+      "status": "beta"
+    },
+    {
+      "id": "dsh-scratchpad",
+      "name": "@local/dsh-scratchpad",
+      "displayName": "Scratchpad · 常驻便签面板",
+      "version": "1.0.0",
+      "repo": "https://github.com/ChrisZqaq/dsh-scratchpad",
+      "path": "plugins/dsh-scratchpad.json",
+      "category": "productivity",
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "license": "MIT",
+      "description": "侧边栏独立入口的常驻便签：随手记事、一键复制、一键清空，内容持久化在本地。适合在长任务里钉待办、暂存命令与结论。",
+      "highlights": [
+        "独立侧栏入口，不占对话区",
+        "一键复制 / 清空，空内容自动禁用操作",
+        "纯本地持久化，不出网"
+      ],
+      "install": "github:ChrisZqaq/dsh-scratchpad",
+      "update": "dsh plugin --profile desktop add github:ChrisZqaq/dsh-scratchpad",
+      "requires": {
+        "dsh": ">=0.2.1-rc.1",
+        "node": ">=22.19.0"
+      },
+      "status": "stable"
+    }
+  ]
+}

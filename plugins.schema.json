@@ -1,0 +1,158 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "plugins.schema.json",
+  "title": "DSH Plugin Collection catalog",
+  "type": "object",
+  "required": [
+    "catalogVersion",
+    "updatedAt",
+    "install",
+    "plugins"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "catalogVersion": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date"
+    },
+    "owner": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "install": {
+      "type": "object",
+      "required": [
+        "command",
+        "profile",
+        "sourcePolicy"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "command": {
+          "type": "string"
+        },
+        "profile": {
+          "type": "string"
+        },
+        "sourcePolicy": {
+          "const": "github"
+        },
+        "unixEntry": {
+          "type": "string"
+        },
+        "windowsEntry": {
+          "type": "string"
+        }
+      }
+    },
+    "plugins": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "version",
+          "repo",
+          "description",
+          "install"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9-]*$"
+          },
+          "name": {
+            "type": "string"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "repo": {
+            "type": "string",
+            "format": "uri"
+          },
+          "path": {
+            "type": "string"
+          },
+          "category": {
+            "enum": [
+              "metering",
+              "workspace",
+              "productivity",
+              "model",
+              "ui",
+              "other"
+            ]
+          },
+          "platforms": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "web",
+                "desktop",
+                "mobile"
+              ]
+            }
+          },
+          "license": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "highlights": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "install": {
+            "type": "string",
+            "minLength": 1
+          },
+          "update": {
+            "type": "string"
+          },
+          "requires": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "dsh": {
+                "type": "string"
+              },
+              "node": {
+                "type": "string"
+              },
+              "external": {
+                "type": "string"
+              }
+            }
+          },
+          "status": {
+            "enum": [
+              "stable",
+              "beta",
+              "experimental",
+              "deprecated"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

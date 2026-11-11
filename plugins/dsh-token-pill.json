@@ -1,0 +1,37 @@
+{
+  "id": "dsh-token-pill",
+  "name": "@local/dsh-token-pill",
+  "displayName": "Token Pill · DeepSeek 花费胶囊",
+  "version": "0.2.3",
+  "repo": "https://github.com/ChrisZqaq/dsh-token-pill",
+  "repoPath": "dsh-token-pill",
+  "entry": "index.js",
+  "clientEntry": "client.js",
+  "bundlePatch": "cordis.patch.yml",
+  "hostDirs": [
+    "host"
+  ],
+  "localeDirs": [
+    "locale"
+  ],
+  "docs": [
+    "README.md",
+    "docs/preview.png"
+  ],
+  "install": "github:ChrisZqaq/dsh-token-pill",
+  "update": "dsh plugin --profile desktop add github:ChrisZqaq/dsh-token-pill",
+  "verify": "node scripts/verify.mjs",
+  "slots": [
+    "sidebar-footer.left",
+    "sidebar-footer.right"
+  ],
+  "routes": [
+    "GET /dsh-token-pill/usage"
+  ],
+  "services": [],
+  "notes": [
+    "宿主侧注册 Session 投影 tokenPill，按「本地日期 + 当刻峰谷」累加；客户端只显示、不读 RPC。",
+    "价目只存在 host/pricing.js 一处，随响应下发；客户端零价格知识。",
+    "不做转写回放：不翻页、不扫事件、没有历史长度上限。"
+  ]
+}

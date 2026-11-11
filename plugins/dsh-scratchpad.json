@@ -1,0 +1,30 @@
+{
+  "id": "dsh-scratchpad",
+  "name": "@local/dsh-scratchpad",
+  "displayName": "Scratchpad · 常驻便签面板",
+  "version": "1.0.0",
+  "repo": "https://github.com/ChrisZqaq/dsh-scratchpad",
+  "repoPath": "dsh-scratchpad",
+  "entry": "index.js",
+  "clientEntry": "client.js",
+  "bundlePatch": "cordis.patch.yml",
+  "hostDirs": [],
+  "localeDirs": [
+    "locale"
+  ],
+  "docs": [
+    "README.md"
+  ],
+  "install": "github:ChrisZqaq/dsh-scratchpad",
+  "update": "dsh plugin --profile desktop add github:ChrisZqaq/dsh-scratchpad",
+  "verify": "node scripts/verify.mjs",
+  "slots": [
+    "sidebar-entry"
+  ],
+  "routes": [],
+  "services": [],
+  "notes": [
+    "纯客户端插件，无宿主路由、不出网。",
+    "内容持久化在本地，清空与复制为空时自动禁用。"
+  ]
+}

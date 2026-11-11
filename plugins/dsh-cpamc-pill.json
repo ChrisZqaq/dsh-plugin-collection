@@ -1,0 +1,37 @@
+{
+  "id": "dsh-cpamc-pill",
+  "name": "@local/dsh-cpamc-pill",
+  "displayName": "CPAMC Pill · CPA 反代状态胶囊",
+  "version": "0.1.1",
+  "repo": "https://github.com/ChrisZqaq/dsh-cpamc-pill",
+  "repoPath": "dsh-cpamc-pill",
+  "entry": "index.js",
+  "clientEntry": "client.js",
+  "bundlePatch": "cordis.patch.yml",
+  "hostDirs": [
+    "host"
+  ],
+  "localeDirs": [
+    "locale"
+  ],
+  "docs": [
+    "README.md"
+  ],
+  "install": "github:ChrisZqaq/dsh-cpamc-pill",
+  "update": "dsh plugin --profile desktop add github:ChrisZqaq/dsh-cpamc-pill",
+  "verify": "node scripts/verify.mjs",
+  "slots": [
+    "sidebar-footer.right"
+  ],
+  "routes": [
+    "GET /dsh-cpamc-pill/status"
+  ],
+  "services": [
+    "CPA-Manager-Plus 127.0.0.1:18317"
+  ],
+  "notes": [
+    "读 CPA-Manager-Plus 的 /v0/management/dashboard/summary 与 /v0/management/auth-files，只读。",
+    "admin key 留在宿主侧，浏览器只调用同源路由 /dsh-cpamc-pill/status。",
+    "total_tokens 已包含 cache_read_tokens，不能把缓存命中再叠加一次。"
+  ]
+}
