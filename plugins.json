@@ -1,7 +1,7 @@
 {
   "$schema": "./plugins.schema.json",
   "catalogVersion": "0.1.0",
-  "updatedAt": "2026-11-11",
+  "updatedAt": "2026-11-12",
   "owner": "ChrisZqaq",
   "description": "DSH（DeepSeek Harness）插件聚合目录：每个插件独立成仓、独立版本、独立发布；本仓只做索引、组合安装与升级编排，不复制插件源码。",
   "install": {
