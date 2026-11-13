@@ -1,6 +1,6 @@
 {
   "$schema": "./plugins.schema.json",
-  "catalogVersion": "0.2.0",
+  "catalogVersion": "0.3.0",
   "updatedAt": "2026-11-13",
   "owner": "ChrisZqaq",
   "description": "DSH（DeepSeek Harness）插件聚合目录：每个插件独立成仓、独立版本、独立发布；本仓只做索引、组合安装与升级编排，不复制插件源码。",
@@ -67,12 +67,12 @@
       "status": "beta"
     },
     {
-      "id": "dsh-infra",
-      "name": "@local/dsh-infra",
+      "id": "dsh-ledger",
+      "name": "@local/dsh-ledger",
       "displayName": "Assets · 个人资产面板",
-      "version": "0.2.0",
-      "repo": "https://github.com/ChrisZqaq/dsh-infra",
-      "path": "plugins/dsh-infra.json",
+      "version": "0.3.0",
+      "repo": "https://github.com/ChrisZqaq/dsh-ledger",
+      "path": "plugins/dsh-ledger.json",
       "category": "workspace",
       "platforms": [
         "web",
@@ -85,8 +85,8 @@
         "密钥列表默认 sk-a*****mnop，点「查看」才展开明文",
         "仓库列表用 gh repo list 只读同步，本地备注不被覆盖"
       ],
-      "install": "github:ChrisZqaq/dsh-infra",
-      "update": "dsh plugin --profile desktop add github:ChrisZqaq/dsh-infra",
+      "install": "github:ChrisZqaq/dsh-ledger",
+      "update": "dsh plugin --profile desktop add github:ChrisZqaq/dsh-ledger",
       "requires": {
         "dsh": ">=0.2.1-rc.1",
         "node": ">=22.19.0"

@@ -1,10 +1,10 @@
 {
-  "id": "dsh-infra",
-  "name": "@local/dsh-infra",
+  "id": "dsh-ledger",
+  "name": "@local/dsh-ledger",
   "displayName": "Assets · 个人资产面板",
-  "version": "0.2.0",
-  "repo": "https://github.com/ChrisZqaq/dsh-infra",
-  "repoPath": "dsh-infra",
+  "version": "0.3.0",
+  "repo": "https://github.com/ChrisZqaq/dsh-ledger",
+  "repoPath": "dsh-ledger",
   "entry": "index.js",
   "clientEntry": "client.js",
   "bundlePatch": "cordis.patch.yml",
@@ -18,18 +18,18 @@
     "README.md",
     "examples/assets.example.yml"
   ],
-  "install": "github:ChrisZqaq/dsh-infra",
-  "update": "dsh plugin --profile desktop add github:ChrisZqaq/dsh-infra",
+  "install": "github:ChrisZqaq/dsh-ledger",
+  "update": "dsh plugin --profile desktop add github:ChrisZqaq/dsh-ledger",
   "verify": "node scripts/verify.mjs",
   "slots": [
     "sidebar.footer.action",
     "main"
   ],
   "routes": [
-    "GET /dsh-infra/assets",
-    "POST /dsh-infra/assets",
-    "GET /dsh-infra/snapshots",
-    "POST /dsh-infra/github/sync"
+    "GET /dsh-ledger/assets",
+    "POST /dsh-ledger/assets",
+    "GET /dsh-ledger/snapshots",
+    "POST /dsh-ledger/github/sync"
   ],
   "services": [],
   "notes": [
