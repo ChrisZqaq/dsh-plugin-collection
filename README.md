@@ -2,7 +2,7 @@
 
 > [ChrisZqaq](https://github.com/ChrisZqaq) 自建的 DSH（DeepSeek）插件聚合仓：四个插件各自独立成仓、独立版本、独立发布，本仓只做**索引、组合安装、升级编排与对账**。
 
-[![Catalog](https://img.shields.io/badge/catalog-0.1.0-blue.svg)](plugins.json)
+[![Catalog](https://img.shields.io/badge/catalog-0.2.0-blue.svg)](plugins.json)
 [![Plugins](https://img.shields.io/badge/plugins-4-informational.svg)](plugins.json)
 [![Profile](https://img.shields.io/badge/profile-desktop-orange.svg)](#)
 [![SSOT](https://img.shields.io/badge/SSOT-plugins.json-blueviolet.svg)](plugins.json)
@@ -17,14 +17,14 @@
 |---|---:|---|---|
 | `dsh-token-pill` | 0.2.3 | 侧栏底部胶囊：当前峰谷时段 + 今日 DeepSeek 花费，悬停出缓存命中、按模型拆分与下次变价时间 | [ChrisZqaq/dsh-token-pill](https://github.com/ChrisZqaq/dsh-token-pill) |
 | `dsh-cpamc-pill` | 0.1.1 | 侧栏底部第二枚胶囊：CPA-Manager-Plus 反代连接健康度、今日 token 用量与滚动速率 | [ChrisZqaq/dsh-cpamc-pill](https://github.com/ChrisZqaq/dsh-cpamc-pill) |
-| `dsh-infra` | 0.1.1 | 机器与仓库公共知识库：一处维护 infra.yml，所有会话都知道该 ssh 哪台、用哪把 key、哪些命令别碰 | [ChrisZqaq/dsh-infra](https://github.com/ChrisZqaq/dsh-infra) |
+| `dsh-infra` | 0.2.0 | 个人资产面板：现金/持仓/负债、机器、GitHub 仓库、API KEY 一本账，含折人民币合计与每次保存的快照历史 | [ChrisZqaq/dsh-infra](https://github.com/ChrisZqaq/dsh-infra) |
 | `dsh-scratchpad` | 1.0.0 | 侧栏独立入口的常驻便签：随手记、一键复制、一键清空，纯本地持久化 | [ChrisZqaq/dsh-scratchpad](https://github.com/ChrisZqaq/dsh-scratchpad) |
 
 四件套的分工，一句话讲清：
 
 - **看花销** → `dsh-token-pill`（DeepSeek 官方账号，逐 token 计价）
 - **看反代** → `dsh-cpamc-pill`（CPA 订阅账号，只报 token 不报钱）
-- **别乱动机器** → `dsh-infra`（该用哪把 key、哪台机器，写死在 YAML 里）
+- **算清家底** → `dsh-infra`（四类资产一本账，密钥默认打码，数据只在本机）
 - **随手记** → `dsh-scratchpad`
 
 ---
@@ -64,7 +64,7 @@ Windows：
 ### 3. 装完要做的
 
 - **重启 DSH 宿主**（桌面端彻底退出再打开，不是只关窗口）。插件更新只替换磁盘文件，宿主进程里的注入代码不重启不会生效。
-- `dsh-infra` 首次使用前确认 `~/.dsh/infra/infra.yml` 存在；没有就从 [examples/infra.example.yml](https://github.com/ChrisZqaq/dsh-infra/blob/main/examples/infra.example.yml) 抄一份。
+- `dsh-infra` 不需要预置文件：首次打开会自动生成 `~/.dsh/infra/assets.yml`；想带示例数据就从 [examples/assets.example.yml](https://github.com/ChrisZqaq/dsh-infra/blob/main/examples/assets.example.yml) 抄一份。仓库页签的「同步」需要本机 `gh` 已登录。
 - `dsh-cpamc-pill` 需要本机跑着 CPA-Manager-Plus（默认 `127.0.0.1:18317`），否则胶囊恒为红点离线。
 
 ---
@@ -138,6 +138,6 @@ node scripts/verify.mjs
 
 ## 安全边界
 
-插件跑在本机 DSH 进程里，拥有你给的权限。装之前自己看一眼源码——四个仓都是几百行纯 JS，没有构建产物、没有 postinstall 脚本、不主动联网（`dsh-cpamc-pill` 只连本机 CPA 面板，`dsh-infra` 只跑你写在 YAML 里、且被你点过「探活」的命令）。
+插件跑在本机 DSH 进程里，拥有你给的权限。装之前自己看一眼源码——四个仓都是几百行纯 JS，没有构建产物、没有 postinstall 脚本、不主动联网（`dsh-cpamc-pill` 只连本机 CPA 面板，`dsh-infra` 只在点「同步仓库」时跑一次 `gh repo list`，数据写在仓外的 `~/.dsh/infra/`）。
 
 本仓只提供索引与安装入口，不对插件行为做担保。

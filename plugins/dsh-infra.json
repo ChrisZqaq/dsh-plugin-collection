@@ -1,8 +1,8 @@
 {
   "id": "dsh-infra",
   "name": "@local/dsh-infra",
-  "displayName": "Infra · 机器与仓库公共知识库",
-  "version": "0.1.1",
+  "displayName": "Assets · 个人资产面板",
+  "version": "0.2.0",
   "repo": "https://github.com/ChrisZqaq/dsh-infra",
   "repoPath": "dsh-infra",
   "entry": "index.js",
@@ -16,26 +16,26 @@
   ],
   "docs": [
     "README.md",
-    "design/layout-prototype.png",
-    "design/layout-prototype-v2.png"
+    "examples/assets.example.yml"
   ],
   "install": "github:ChrisZqaq/dsh-infra",
   "update": "dsh plugin --profile desktop add github:ChrisZqaq/dsh-infra",
   "verify": "node scripts/verify.mjs",
   "slots": [
-    "sidebar-footer.right",
-    "conversation-view.tab"
+    "sidebar.footer.action",
+    "main"
   ],
   "routes": [
-    "GET /dsh-infra/state",
-    "GET /dsh-infra/hosts",
-    "POST /dsh-infra/hosts",
-    "POST /dsh-infra/check"
+    "GET /dsh-infra/assets",
+    "POST /dsh-infra/assets",
+    "GET /dsh-infra/snapshots",
+    "POST /dsh-infra/github/sync"
   ],
   "services": [],
   "notes": [
-    "全局 ~/.dsh/infra/infra.yml + 项目级 <workspace>/.dsh/infra.yml，同名 id 项目级覆盖全局。",
-    "三个界面（侧栏入口 / 主区域面板 / 对话区仓库视图）读同一份 YAML 与同一组宿主路由。",
-    "rules 是自定义正则拦截，匹配危险命令时给出 reason。"
+    "数据在仓外：~/.dsh/infra/assets.yml（当前状态，可手改）+ ~/.dsh/infra/snapshots.jsonl（只追加快照）。两个文件都不进 git。",
+    "宿主只 inject webServer + subprocess，不注入 prompt、不拦截命令、不扫 ~/.ssh。",
+    "负债填正数，面板按 kind 加负号；快照同时存汇率与合计，改汇率不回算历史。",
+    "仓库同步跑 gh repo list --limit 300，只覆盖 name/visibility/language/committedAt/description/remote，保留本地 note。"
   ]
 }

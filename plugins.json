@@ -1,7 +1,7 @@
 {
   "$schema": "./plugins.schema.json",
-  "catalogVersion": "0.1.0",
-  "updatedAt": "2026-11-12",
+  "catalogVersion": "0.2.0",
+  "updatedAt": "2026-11-13",
   "owner": "ChrisZqaq",
   "description": "DSH（DeepSeek Harness）插件聚合目录：每个插件独立成仓、独立版本、独立发布；本仓只做索引、组合安装与升级编排，不复制插件源码。",
   "install": {
@@ -69,8 +69,8 @@
     {
       "id": "dsh-infra",
       "name": "@local/dsh-infra",
-      "displayName": "Infra · 机器与仓库公共知识库",
-      "version": "0.1.1",
+      "displayName": "Assets · 个人资产面板",
+      "version": "0.2.0",
       "repo": "https://github.com/ChrisZqaq/dsh-infra",
       "path": "plugins/dsh-infra.json",
       "category": "workspace",
@@ -79,11 +79,11 @@
         "desktop"
       ],
       "license": "MIT",
-      "description": "给 agent 的「机器 + 仓库」公共知识库：一处维护 infra.yml，所有会话都知道该 ssh 哪台机器、用哪把 key、不许改成 https。三个界面（侧栏 Infra 入口、主区域 Infra 面板、对话区仓库视图）读同一份 YAML 与同一组宿主路由。",
+      "description": "侧栏底部一个 $ 图标，点开是本机私有的资产账：现金/持仓/负债、服务器与电脑、GitHub 仓库、API KEY 四类条目统一记账，含同类小计、分币种小计与折人民币合计；每次保存追加一行快照，能看净资产怎么变。数据落在 ~/.dsh/infra/，不进仓、不上传。",
       "highlights": [
-        "解决「明明有 key 却自己 ssh-keygen 一把新的」这类事故",
-        "全局 ~/.dsh/infra/infra.yml + 项目级 .dsh/infra.yml 双层覆盖",
-        "自定义正则规则可拦截危险命令（如整目录删除）"
+        "人民币 + 港币，汇率手填不联网，改汇率不污染历史快照",
+        "密钥列表默认 sk-a*****mnop，点「查看」才展开明文",
+        "仓库列表用 gh repo list 只读同步，本地备注不被覆盖"
       ],
       "install": "github:ChrisZqaq/dsh-infra",
       "update": "dsh plugin --profile desktop add github:ChrisZqaq/dsh-infra",

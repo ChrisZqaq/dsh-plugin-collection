@@ -2,6 +2,16 @@
 
 本仓记录**目录与版本编排**的变更；插件自身的功能变更写在各插件仓的 CHANGELOG / Release 里。
 
+## 0.2.0 — 2026-11-13
+
+`dsh-infra` 从「机器与仓库知识库」改型为「个人资产面板」，这是一次不兼容的方向调整。
+
+- `dsh-infra` 0.1.1 → **0.2.0**：四类资产（货币 / 服务器与电脑 / GitHub 仓库 / API KEY）一本账，六个页签（总览、货币、设备、仓库、密钥、历史）。
+- 数据落点从 `~/.dsh/infra/infra.yml` 改为仓外的 `~/.dsh/infra/assets.yml` + `~/.dsh/infra/snapshots.jsonl`；旧文件在首次读取时被一次性导入，之后不再使用。
+- 槽位收缩：`sidebar-footer.right` + `conversation-view.tab` → `sidebar.footer.action` + `main`。宿主侧删除 prompt 注入、命令拦截与 `~/.ssh` 发现，只保留 `webServer` + `subprocess`。
+- 路由换组：`GET /dsh-infra/state|hosts`、`POST /dsh-infra/hosts|check` → `GET|POST /dsh-infra/assets`、`GET /dsh-infra/snapshots`、`POST /dsh-infra/github/sync`。
+- 清单 `plugins/dsh-infra.json` 的 slots / routes / docs / notes 同步更新；catalog 提升到 `catalogVersion 0.2.0`。
+
 ## 0.1.0 — 2026-11-11
 
 首个版本。
